@@ -1,17 +1,63 @@
-# quote_app_shevchenko
+# Приложение «Цитата дня»
 
-A new Flutter project.
+Flutter-приложение, которое показывает случайную цитату из заранее подготовленного списка. При нажатии на кнопку «Следующая цитата» на экране появляется новая цитата с изображением
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Автор
+**Шевченко Вероника** 
+**ИСП-242** 
+**22.11.2026** 
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Стек и версии
+* **Flutter:** 3.47.9
+* **Dart:** 3.13.7
+* **Платформа:** Web (Chrome)
+* **IDE:** VS Code
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## Скриншот приложения
+![Приложение](img\step6_shevchenko.png)
+
+---
+
+## Структура проекта (папка `lib/`)
+* **main.dart** — точка входа в приложение. Содержит класс `QuoteApp`, который настраивает `MaterialApp`, отключает DEBUG-баннер и задает `GradientContainer` как фон
+* **gradient_container.dart** — собственный виджет-класс. Принимает два цвета через параметры конструктора и рисует градиентный фон с помощью `LinearGradient`
+* **quote_card.dart** — собственный виджет-класс. Принимает текст цитаты, автора и путь к изображению. Отображает карточку с картинкой и текстом
+* **quote_screen.dart** — главный экран приложения. Хранит состояние текущей цитаты, использует `Random` для выбора случайной цитаты и `setState()` для обновления интерфейса при нажатии на кнопку
+
+---
+
+## Как запустить
+1. Клонировать репозиторий: git clone https://github.com/myriton/Flutter_Lab5.git
+2. Перейти в папку проекта: cd (папка)
+3. Установить зависимости: flutter pub get
+4. Запустить приложение в браузере: flutter run -d chrome
+
+---
+
+## Изучили
+1. Научились выстраивать иерархию от MaterialApp до кастомных виджетов
+2. Вынесли каждый виджет в отдельный .dart файл для чистоты и удобства поддержки
+3. Научились передавать цвета, текст и изображения в виджеты через их конструкторы
+4. Освоили StatefulWidget и setState() для обновления интерфейса при нажатии на кнопку
+5. Подключили локальные изображения через pubspec.yaml и вывели их через Image.asset
+6. Использовали библиотеку dart:math (Random) для выбора случайной цитаты
+
+---
+
+## Ответы 
+1. StatelessWidget не хранит состояние и отрисовывается один раз на основе переданных параметров. StatefulWidget хранит изменяемые данные и перерисовывается при вызове setState().
+
+2. setState() сообщает Flutter, что данные изменились, и запускает перерисовку интерфейса. Без него изменения переменных не отобразятся на экране.
+
+3. Чтобы код был переиспользуемым и чистым. Виджет принимает цвета через параметры и может использоваться в любом месте без дублирования кода.
+
+4. Через параметры конструктора: QuoteCard(quote: q.quote, author: q.author, imagePath: q.imagePath).
+
+5. Метод nextInt(_quotes.length) генерирует случайное число от 0 до длины списка, которое используется как индекс для выбора случайной цитаты
+
